@@ -1,5 +1,5 @@
 
-
+/// getting dotnet to work on this, does this meet the requirements that you ask for??
 
 class Hilo
 {
@@ -35,9 +35,9 @@ class Hilo
     Deck.Add(12, twelve);
     Deck.Add(13, thirteen);
 
-    List<Cards>cardList = cards(Cards);
+    List<Cards>cardList = items(Deck);
 
-        while (!GameOver(deck))
+        while (!GameOver(gameState))
         {   
             int currentCard = Current(cardList<Cards> carList); 
                 Console.WriteLine("The card is: " + currentCard);
