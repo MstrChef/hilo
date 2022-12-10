@@ -88,6 +88,7 @@ class Hilo
             string decision = Console.ReadLine();
             if (decision == "n") {
                 int score = currentScore - currentScore;
+                Console.WriteLine("Thanks for Playing.");
                 return score;
             }
             else {
