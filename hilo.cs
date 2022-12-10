@@ -1,5 +1,5 @@
 
-/// getting dotnet to work on this, does this meet the requirements that you ask for??
+/// losing points on correctguess, gaining points on incorrect guess, not ending game when N is input
 
 class Hilo
 {
@@ -20,7 +20,7 @@ class Hilo
     var twelve = new Cards(12);
     var thirteen = new Cards(13);
 
-    var Deck = new Dictionary <string,Cards>();
+    Dictionary<int,Cards> Deck = new Dictionary <int,Cards>();
     Deck.Add(1, one);
     Deck.Add(2, two);
     Deck.Add(3, three);
@@ -35,74 +35,73 @@ class Hilo
     Deck.Add(12, twelve);
     Deck.Add(13, thirteen);
 
-    List<Cards>cardList = items(Deck);
+    // List<Cards>cardList = (Deck);
 
-        while (!GameOver(gameState))
+        int score = 300;
+        while (score > 0)
         {   
-            int currentCard = Current(cardList<Cards> carList); 
+            int currentCard = Current(Deck); 
                 Console.WriteLine("The card is: " + currentCard);
-            string playerguess = Console.ReadLine("Higher of lower? [h/l] ");
-            int nextCard = Next(cardList<Cards> cardList);
+                Console.WriteLine("Higher of lower? [h/l]");
+            string playerGuess = Console.ReadLine();
+            int nextCard = Next(Deck);
                 Console.WriteLine("Next card was: " + nextCard);
-            string currentScore = Action(cardList<Cards> cardList);
+            int currentScore = Compute(playerGuess, nextCard, currentCard, score);
                 Console.WriteLine("Your score is: " + currentScore);
-            bool gameState = GameOver(deck);
-            string decision = Continue();        
+            score = Continue(currentScore);        
         }
     }
 
-
-    static int Current(List<Cards> cardList) {
+    static int Current(Dictionary<int,Cards> Deck) {
         Random random = new Random();
-        int currentCard = random.Next(cardList);
+        int currentCard = random.Next(Deck.Count);
         return currentCard;
     }
-    static int Next(List<Cards> cardList) {
+    static int Next(Dictionary<int,Cards> Deck) {
         Random random = new Random();
-        int nextCard = random.Next(cardList);
+        int nextCard = random.Next(Deck.Count);
         return nextCard;
-
-        if (nextCard = currentCard);
-            Random random = new random();
-            int nextCard = random.Next(cardList);
-            return nextCard;
     }
-    static string Action(List<Cards> cardList) {
-            currentScore = 300;
-            if (nextCard > currentCard && playerGuess = "h") {
-                currentScore + 100;
-                return currentScore;
-            }
-            if (nextCard < currentCard && playerGuess = "l") {
-                currentScore - 75;
+    static int Compute(string playerGuess, int nextCard, int currentCard, int score) {
+            if (nextCard > currentCard && playerGuess == "h" || nextCard < currentCard && playerGuess == "l") {
+                int currentScore = score + 100;
                 return currentScore;
             }
             else {
-                Console.WriteLine("Invalid Guess, try again"); 
+                int currentScore = score - 75;
+                return currentScore;
             }
     }
-
-    static bool GameOver() {
-        bool gameState = false;
-        if (score <= 0 ) {
-            gameState = true;
-        }
-        return gameState;
-    }
-
-    static string Continue() {
-        string decision = Console.ReadLine("Play again? [y/n]");
-        if (decision = "n") {
-            CurrentScore = 0;
-            return decision;
-        }
-        if (decision = "y") {
-            return decision;
+    static int GameOver(int currentScore) {
+        if (currentScore <= 0 ) {
+            int score = 0;
+            return score;
         }
         else {
-            Console.WriteLine("Invalid Choice");
+            int score = currentScore;
+            return score;
         }
     }
+    static int Continue(int currentScore) {
+        if (currentScore > 0){
+            Console.WriteLine("Play again? [y/n] ");
+            string decision = Console.ReadLine();
+            if (decision == "n") {
+                int score = currentScore - currentScore;
+                return score;
+            }
+            else {
+            int score = currentScore - 0;
+            return score;
+            }
+        }
+        else {
+            int score = currentScore;
+            Console.WriteLine("Thanks for Playing.");
+            return score;
+        }
+    }
+    
 }
 
 class Cards {
